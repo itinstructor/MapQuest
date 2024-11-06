@@ -1,0 +1,111 @@
+{
+    "info": {
+        "statuscode": 0,
+        "copyright": {
+            "text": "© 2022 MapQuest, Inc.",
+            "imageUrl": "http: //api.mqcdn.com/res/mqlogo.gif",
+            "imageAltText": "© 2022 MapQuest, Inc."
+        },
+        "messages": []
+    },
+    "options": {
+        "maxResults": 1,
+        "ignoreLatLngInput": False
+    },
+    "results": [
+        {
+            "providedLocation": {
+                "location": "615 Mountain View, Scottsbluff, NE, US"
+            },
+            "locations": [
+                {
+                    "street": "615 Mountain View Ave",
+                    "adminArea6": "",
+                    "adminArea6Type": "Neighborhood",
+                    "adminArea5": "Scottsbluff",
+                    "adminArea5Type": "City",
+                    "adminArea4": "Scotts Bluff",
+                    "adminArea4Type": "County",
+                    "adminArea3": "NE",
+                    "adminArea3Type": "State",
+                    "adminArea1": "US",
+                    "adminArea1Type": "Country",
+                    "postalCode": "69361-4940",
+                    "geocodeQualityCode": "P1BAA",
+                    "geocodeQuality": "ADDRESS",
+                    "dragPoint": False,
+                    "sideOfStreet": "L",
+                    "linkId": "0",
+                    "unknownInput": "",
+                    "type": "s",
+                    "latLng": {
+                        "lat": 41.89206,
+                        "lng": -103.67188
+                    },
+                    "displayLatLng": {
+                        "lat": 41.89276,
+                        "lng": -103.6719
+                    },
+                    "mapUrl": ""
+                }
+            ]
+        }
+    ]
+}
+
+
+{
+    "info": {
+        "statuscode": 0,
+        "copyright": {
+            "text": "© 2021 MapQuest, Inc.",
+            "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+            "imageAltText": "© 2021 MapQuest, Inc."
+        },
+        "messages": []
+    },
+    "options": {
+        "maxResults": -1,
+        "thumbMaps": True,
+        "ignoreLatLngInput": False
+    },
+    "results": [
+        {
+            "providedLocation": {
+                "location": "615 mountain view lane scottsbluff ne"
+            },
+            "locations": [
+                {
+                    "street": "615 Mountain View Ln",
+                    "adminArea6": "",
+                    "adminArea6Type": "Neighborhood",
+                    "adminArea5": "Scottsbluff",
+                    "adminArea5Type": "City",
+                    "adminArea4": "Scotts Bluff",
+                    "adminArea4Type": "County",
+                    "adminArea3": "NE",
+                    "adminArea3Type": "State",
+                    "adminArea1": "US",
+                    "adminArea1Type": "Country",
+                    "postalCode": "69361",
+                    "geocodeQualityCode": "P1AAA",
+                    "geocodeQuality": "POINT",
+                    "dragPoint": False,
+                    "sideOfStreet": "L",
+                    "linkId": "r29422779|p156923580|n39612194",
+                    "unknownInput": "",
+                    "type": "s",
+                    "latLng": {
+                        "lat": 41.892084,
+                        "lng": -103.671898
+                    },
+                    "displayLatLng": {
+                        "lat": 41.892771,
+                        "lng": -103.671916
+                    },
+                    "mapUrl": "http://www.mapquestapi.com/staticmap/v5/map?key=8ht4sNYAv2r61xvKoMvsAMLK7FgGEULd&type=map&size=225,160&locations=41.892084,-103.671898|marker-sm-50318A-1&scalebar=true&zoom=15&rand=983743675"
+                }
+            ]
+        }
+    ]
+}
