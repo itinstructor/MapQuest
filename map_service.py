@@ -25,7 +25,8 @@ class MapService:
     # ----------------------- GEOCODE LOCATION --------------------------- #
     def geocode_location(self, location):
         """
-        Convert a location string into geographical coordinates and address details.
+        Convert a location string into geographical coordinates 
+        and address details.
 
         Args:
             location (str): A location string (e.g., "New York, NY" or
@@ -48,10 +49,15 @@ class MapService:
 
         try:
             # Make the API request
-            response = requests.get(GEOCODE_ENDPOINT, params=params)
+            response = requests.get(
+                GEOCODE_ENDPOINT,
+                params=params
+            )
 
             # Raise an exception for bad status codes
             response.raise_for_status()
+
+            # Parse the JSON response into a dictionary
             data = response.json()
 
             # Check if we got any results
@@ -91,8 +97,10 @@ class MapService:
             the map cannot be retrieved
         """
 
-        # First get the coordinates for the location
+        # Get the coordinates for the location
         location_data = self.geocode_location(location)
+
+        # Check if location was found
         if not location_data:
             raise Exception("Location not found")
 
@@ -113,7 +121,10 @@ class MapService:
         try:
             # Get the map image
             response = requests.get(MAP_ENDPOINT, params=params)
+
+            # Raise an exception for bad status codes
             response.raise_for_status()
+
             # Convert the response content to a PIL Image
             return Image.open(BytesIO(response.content)), location_data
 

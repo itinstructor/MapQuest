@@ -16,9 +16,10 @@ from map_service import MapService
 class MapViewer:
     """
     A GUI application for viewing maps using the MapQuest API.
-    Provides an interface for searching locations and displaying maps with various options.
-    The layout is organized with location details to the right of the search area,
-    and includes controls for map type and resolution selection.
+    Provides an interface for searching locations and 
+    displaying maps with various options.
+    The layout is organized with location details to the right of the 
+    search area, includes controls for map type and resolution selection.
     """
 
     def __init__(self, root):
@@ -35,11 +36,14 @@ class MapViewer:
 
         # Initialize the MapService instance
         self.map_service = MapService()
+
         # Default map settings
         # Default zoom level
         self.zoom = 14
+
         # Default resolution
         self.resolution = tk.StringVar(value="1024x768")
+
         # Default map type
         self.map_type = tk.StringVar(value="map")
 
@@ -54,9 +58,11 @@ class MapViewer:
         Update the map dimensions based on the selected resolution.
         Parses the resolution string and updates width and height accordingly.
         """
+        # Parse the the current resolution string to extract width and height
         width, height = self.resolution.get().lower().split('x')
         self.width = int(width)
         self.height = int(height)
+
         # Update the MapService instance dimensions
         self.map_service.width = self.width
         self.map_service.height = self.height
@@ -65,7 +71,8 @@ class MapViewer:
     def setup_ui(self):
         """
         Set up the main user interface components.
-        Uses a two-column layout with controls on the left and location details on the right.
+        Uses a two-column layout with controls on the left 
+        and location details on the right.
         """
         # Main container frame with padding
         main_frame = ttk.Frame(self.root, padding="10")
@@ -108,8 +115,12 @@ class MapViewer:
             row=0, column=0, sticky=tk.W)
         self.location_entry = ttk.Entry(input_frame, width=40)
         self.location_entry.grid(row=0, column=1, padx=5, sticky=(tk.W, tk.E))
+
+        # Default location
         self.location_entry.insert(
-            0, "615 Mountain View Ave Scottsbluff NE")  # Default location
+            0,
+            "615 Mountain View Ave Scottsbluff NE"
+        )
 
         # Bind Enter key to search function
         self.location_entry.bind('<Return>', lambda e: self.update_map())
@@ -121,9 +132,12 @@ class MapViewer:
         search_button.grid(row=0, column=2, padx=(5, 0))
 
         # Zoom level control
-        ttk.Label(input_frame, text="Zoom (1-20):").grid(row=1,
-                                                         column=0, sticky=tk.W)
+        ttk.Label(input_frame, text="Zoom (1-20):").grid(
+            row=1, column=0, sticky=tk.W)
+
+        # StringVar to hold the zoom level
         self.zoom_var = tk.StringVar(value=str(self.zoom))
+
         zoom_spinbox = ttk.Spinbox(
             input_frame,
             from_=1,
@@ -168,7 +182,9 @@ class MapViewer:
                 command=self.update_map
             )
             rb.grid(row=0, column=i, padx=3, pady=2)
-            ToolTip(rb, msg=desc, delay=1.0)  # Apply ToolTip directly
+
+            # Apply ToolTip directly
+            ToolTip(rb, msg=desc, delay=1.0)
 
 # ----------------------- SETUP RESOLUTION FRAME ------------------------- #
     def setup_resolution_frame(self, parent):
@@ -193,6 +209,10 @@ class MapViewer:
         ]
 
         # Create radio buttons for each resolution in a grid layout
+        # Each resolution is a tuple of (value, description)
+        # The value is the resolution string, and the description is the tooltip
+        # The resolution string is in the format "width x height"
+        # The tooltip is a description of the resolution
         for i, (value, desc) in enumerate(resolutions):
             rb = ttk.Radiobutton(
                 resolution_frame,
@@ -203,7 +223,8 @@ class MapViewer:
             )
             rb.grid(row=0, column=i, padx=3, pady=2)
 
-            ToolTip(rb, msg=desc,  delay=1.0)  # Apply ToolTip directly
+            # Apply resolution ToolTip directly
+            ToolTip(rb, msg=desc,  delay=1.0)
 
 # --------------------------- SETUP GEO FRAME ---------------------------- #
     def setup_geo_frame(self, parent):
@@ -278,7 +299,10 @@ class MapViewer:
         Retrieves new map image and location data from the MapService.
         Handles errors and displays appropriate messages to the user.
         """
+        # Get the location from the entry field
         location = self.location_entry.get()
+
+        # Check if the location is empty
         if not location:
             messagebox.showwarning("Warning", "Please enter a location")
             return
@@ -294,7 +318,8 @@ class MapViewer:
             # Update the map display
             photo = ImageTk.PhotoImage(image)
             self.map_label.configure(image=photo)
-            self.map_label.image = photo  # Keep a reference to prevent garbage collection
+            # Keep a reference to prevent garbage collection
+            self.map_label.image = photo
 
             # Update the location information display
             self.update_location_info(location_data)
