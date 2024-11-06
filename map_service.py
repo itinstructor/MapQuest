@@ -1,3 +1,10 @@
+"""
+    Name: map_service.py
+    Author:
+    Created:
+    Purpose: MapQuest service class to retrieve maps of location
+    15,000 requests per month
+"""
 import requests
 from PIL import Image
 from io import BytesIO

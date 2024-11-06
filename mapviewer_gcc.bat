@@ -7,5 +7,6 @@ python -m nuitka ^
     --enable-plugin=tk-inter ^
     --windows-console-mode=disable ^
     --windows-icon-from-ico=telescope.ico ^
-    mapquest_map_viewer.py
+    map_viewer.py
 pause
+

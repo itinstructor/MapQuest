@@ -8,8 +8,9 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import ImageTk
-from map_service import MapService
+# pip install tkinter-tooltip
 from tktooltip import ToolTip
+from map_service import MapService
 
 
 class MapViewer:
@@ -26,16 +27,21 @@ class MapViewer:
 
         Args:
             root: The root Tkinter window
-            api_key (str): MapQuest API key
         """
         self.root = root
-        self.map_service = MapService()
+
         self.root.title("MapQuest Map Viewer")
         self.root.iconbitmap("telescope.ico")
-        # Default settings
-        self.zoom = 14  # Default zoom level
-        self.resolution = tk.StringVar(value="1024x768")  # Default resolution
-        self.map_type = tk.StringVar(value="map")  # Default map type
+
+        # Initialize the MapService instance
+        self.map_service = MapService()
+        # Default map settings
+        # Default zoom level
+        self.zoom = 14
+        # Default resolution
+        self.resolution = tk.StringVar(value="1024x768")
+        # Default map type
+        self.map_type = tk.StringVar(value="map")
 
         # Configure initial map dimensions based on default resolution
         self.update_dimensions()
