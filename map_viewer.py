@@ -328,6 +328,7 @@ class MapViewer:
             # Update the map display
             photo = ImageTk.PhotoImage(image)
             self.map_label.configure(image=photo)
+            
             # Keep a reference to prevent garbage collection
             self.map_label.image = photo
 
