@@ -5,12 +5,14 @@
     Purpose: MapQuest GUI shows map of location
     15,000 requests per month
 """
+from base64 import b64decode
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import ImageTk
 # pip install tkinter-tooltip
 from tktooltip import ToolTip
 from map_service import MapService
+from telescope_ico import icon_16, icon_32
 
 
 class MapViewer:
@@ -30,9 +32,16 @@ class MapViewer:
             root: The root Tkinter window
         """
         self.root = root
-
         self.root.title("MapQuest Map Viewer")
-        self.root.iconbitmap("telescope.ico")
+        
+        # Set the window and task bar icon
+        small_icon = tk.PhotoImage(data=b64decode(icon_16))
+        large_icon = tk.PhotoImage(data=b64decode(icon_32))
+        self.root.iconphoto(False, large_icon, small_icon)
+
+        # The WM_DELETE_WINDOW protocol is used to handle what happens
+        # when the user clicks the close button of a window.
+        self.root.protocol("WM_DELETE_WINDOW", self.quit)
 
         # Initialize the MapService instance
         self.map_service = MapService()
@@ -122,10 +131,6 @@ class MapViewer:
             "615 Mountain View Ave Scottsbluff NE"
         )
 
-        # Bind Enter key to search function
-        self.location_entry.bind('<Return>', lambda e: self.update_map())
-        self.root.bind('<Return>', lambda e: self.update_map())
-
         # Search button
         search_button = ttk.Button(
             input_frame, text="Search", command=self.update_map)
@@ -150,6 +155,11 @@ class MapViewer:
         # Set up the map type and resolution selection frames
         self.setup_map_type_frame(input_frame)
         self.setup_resolution_frame(input_frame)
+
+        # Bind Enter key to search function
+        self.root.bind('<Return>', self.update_map)
+        self.root.bind('<KP_Enter>', self.update_map)
+        self.root.bind("<Escape>", self.quit)
 
 # -------------------------- SETUP MAP TYPE FRAME ------------------------ #
     def setup_map_type_frame(self, parent):
@@ -326,6 +336,9 @@ class MapViewer:
 
         except Exception as e:
             messagebox.showerror("Error", str(e))
+
+    def quit(self):
+        self.root.destroy()
 
 
 def main():
